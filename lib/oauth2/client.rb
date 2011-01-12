@@ -67,7 +67,7 @@ module OAuth2
       puts resp.inspect
             
       case resp.status
-        when 200...201
+        when 200..201
           if json?
             return ResponseObject.from(resp)
           else

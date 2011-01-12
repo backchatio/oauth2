@@ -62,7 +62,10 @@ module OAuth2
       else
         resp = connection.run_request(verb, url, params, headers)
       end
-      
+
+      puts url, params.inspect, headers.inspect
+      puts resp.inspect
+            
       case resp.status
         when 200...201
           if json?

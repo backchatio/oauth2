@@ -16,7 +16,9 @@ module OAuth2
     end
 
     def request(verb, path, params = {}, headers = {})
-      @client.request(verb, path, params.merge('access_token' => @token), headers.merge('Authorization' => "Token token=\"#{@token}\""))
+      # AB: Spec states only one of header/querystring can be present, so this was breaking GoFreerange's OAuth provider
+      #@client.request(verb, path, params.merge('oauth_token' => @token), headers.merge('Authorization' => "OAuth #{@token}"))
+      @client.request(verb, path, params, headers.merge('Authorization' => "OAuth #{@token}"))
     end
 
     def get(path, params = {}, headers = {})
